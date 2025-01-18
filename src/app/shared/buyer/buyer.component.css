@@ -1,0 +1,118 @@
+
+.example-sidenav{
+display:flex;
+align-items: center;
+justify-content:center;
+width:300px;
+padding-left:1%;
+padding-bottom: 1%
+}
+
+.nav-container{
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: 10px;
+}
+mat-sidenav-container{
+    height: 94%;
+}
+mat-sidenav{
+  
+    margin: 25px;
+    width:240px;
+
+}
+mat-sidenav{
+    width: 280px;
+    flex-direction: column;
+}
+.example-container{
+    display: flex;
+}
+.example-container > *{
+    width: 100%;
+}
+.mat-radio-button ~ .mat-radio-button{
+    margin-left:15px;
+}
+.inner{
+    overflow: hidden;
+}
+.inner img{
+    transition: all 1.5s ease;
+}
+.inner:hover img{
+    transform: scale(1.5    )
+}
+
+.example-card {
+    max-width: 480px;
+    max-height: 500px;
+  }
+
+  #amenities{
+    width: 1000px;
+  }
+
+  .example-card:hover {
+    transform: scale(1.05   )
+  }
+  
+.example-header-image {
+    background-image: url("../../../assets/h8.jpg");
+     background-size: cover; 
+  }
+
+  .center{
+      text-align: center
+  }
+
+  mat-sidenav-content{
+      padding:25px
+  }
+  .inner {
+      overflow: hidden;
+  }
+  .inner img{
+      transition:all 1.5s ease;
+  }
+  .inner:hover img{
+      transform:scale(1.5)
+  }
+
+.box-1{
+    border-radius: 250px;
+    width: 100%;
+}
+.search-image{
+    background-size: cover;
+}
+
+
+
+.rcorners2 {
+
+    border-radius: 10px solid #000000
+  }
+
+
+
+  .loading-indicator{  
+    overflow: show;
+    margin-top: 40px;   
+    margin-right: 5px;
+    margin-left: 350px;
+    align-items: center
+}
+
+.card-color{
+    background-color:rgb(240, 240, 240)
+
+}
+::ng-deep .mat-tooltip{
+    background-color:black;
+    color:white;
+    height: 50%;
+    font-size: 13px;
+}

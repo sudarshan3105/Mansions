@@ -1,0 +1,10 @@
+.color{
+    color:blue;
+}
+
+::ng-deep .mat-tooltip{
+    background-color:black;
+    color:white;
+    height: 50%;
+    font-size: 13px;
+}

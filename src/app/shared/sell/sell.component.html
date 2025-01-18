@@ -1,0 +1,253 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <br>
+            <br>
+            <br>
+            <h4>
+                Instructions to fill the form:
+            </h4>
+            <p>
+                Please provide all the details of your property one by one.Depending upo the values you are given.We eill add your property
+                in our website
+            </p>
+            <img class="responsive img-fluid" src="../../../assets/house.jpg">
+
+        </div>
+
+        <div class="col-md-8">
+            <br>
+            <h5 class="text-center">Post your Property Here!</h5>
+            <mat-tab-group #tabgroup  [selectedIndex]="selectedIndex">
+                <mat-tab label="First Step">
+                    <br>
+                    <form class="my-form" [formGroup]="sellForm">
+                        <mat-form-field class="full-width" appearance="legacy">
+                            <mat-label>Please mention area</mat-label>
+                            <mat-select name="area" required formControlName="area">
+
+                                <mat-option [value]="area" *ngFor="let area of areaArray" (click)="spinnerVal()" >{{area}}</mat-option>
+
+                            </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+
+
+                        <mat-form-field class="full-width" appearance="legacy">
+                            <mat-label>Property Pincode</mat-label>
+                            <mat-select name="pincode" formControlName="pincode" required>
+                                <mat-option [value]="pin" *ngFor="let pin of pincodeArray" (click)="spinnerVal()" >{{pin}}</mat-option>
+                            </mat-select>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+                       
+                        <mat-form-field class="full-width" appearance="legacy">
+                            
+                            <mat-select name="propertyOwnership" formControlName="propertyOwnership" required>
+                                <mat-option value="" >You are..</mat-option>
+                                <mat-option value="owner">Owner</mat-option>
+                                <mat-option value="dealer">Dealer</mat-option>
+                                <mat-option value="broker">Broker</mat-option>
+                            </mat-select>
+
+                        </mat-form-field> <br>
+                        <b> Property For?</b>
+                        &nbsp;&nbsp;&nbsp;
+                        <span>
+                            <mat-radio-group arial-label="Select an option" formControlName="propertyType" (change)="spinnerVal()">
+                                <mat-radio-button name="propertyType" value="Sale" required>Sale</mat-radio-button>&nbsp;
+                                <mat-radio-button name="propertyType" value="Rent" required>Rent</mat-radio-button>&nbsp;
+                            </mat-radio-group>
+                        </span><br><br>
+                        <div>
+                           <b> What type of property do you want to post?</b>
+                            <br>
+                            <mat-radio-group arial-label="Select an option" formControlName="buildingType" (change)="spinnerVal()">
+                                <mat-radio-button name="buildingType" value="House" required>
+                                    <mat-icon>house</mat-icon>House</mat-radio-button>&nbsp;
+                                <mat-radio-button name="buildingType" value="Apartment" required>
+                                    <mat-icon>apartment</mat-icon>Apartment</mat-radio-button>&nbsp;
+                            </mat-radio-group>
+
+                        </div>
+
+                        <mat-form-field class="full-width" appearance="legacy">
+                            <input type="number" matInput placeholder="No of Bedrooms" min="0" formControlName="noOfBedrooms" name="noOfBedrooms" required (change)="spinnerVal()">
+                            <mat-icon matSuffix>king_bed</mat-icon>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;
+
+                        <mat-form-field class="full-width" appearance="legacy">
+                            <input type="number" matInput placeholder="No of Bathrooms" min="0" formControlName="noOfBathrooms" name="noOfBathrooms" required (change)="spinnerVal()">
+                            <mat-icon matSuffix>bathtub</mat-icon>
+                        </mat-form-field>&nbsp;&nbsp;&nbsp;
+
+                        <mat-form-field class="full-width" appearance="legacy">
+                            <input type="number" matInput placeholder="No of Balconies" min="0" formControlName="noOfBalconies" name="noOfBalconies" required (change)="spinnerVal()">
+                            <mat-icon matSuffix>store_mall_directory</mat-icon>
+                        </mat-form-field>
+                        <br>
+
+                        <label>Price:</label>
+                        <mat-slider aria-label="Price" (change)="spinnerVal()" class="priceSlider" thumbLabel [displayWith]="formPriceLabel" step="1000" min="1" max="1000000"
+                            name="price" formControlName="price" required>
+
+                        </mat-slider>
+                        <br>
+                        <button mat-raised-button color="primary" [disabled]="sellForm.invalid" (click)="sell()" matTooltip="Click here to Post Details"
+                        matTooltipPosition="below" matTooltipClass="mat-tooltip">POST</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button mat-raised-button color="accent" [disabled]="sellForm.invalid" (click)="nextStep()">Next</button>
+
+
+                    </form>
+                </mat-tab>
+                <mat-tab label="Second Step">
+                    <br>
+                    <form [formGroup]="sellForm1" class="my-form">
+                        <div><b>Property Status:</b>&nbsp;&nbsp;&nbsp;
+                            <mat-radio-group aria-label="Status" formContolName="transactionType">
+                                <mat-radio-button name="transactionType" value="NEw">Old</mat-radio-button>&nbsp;
+                                <mat-radio-button name="transactionType" value="NEw">New</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <b>Age of Property:</b>&nbsp;&nbsp;&nbsp;
+                        <mat-slider class="ageSlider" thumbLabel [displayWith]="formAgeLabel" tickInterval="1" min="1" max="5" formControlName="ageOfProperty">
+
+                        </mat-slider>
+                        <br>
+                        <mat-form-field class="full-width" appearance="legacy">
+                            <mat-label>Select the availability</mat-label>
+                            <mat-select name="availability" formControlName="availabilityBy">
+                                <mat-option value="Anytime">Anytime</mat-option>
+                                <mat-option value="within 1 weeks">within 1 weeks</mat-option>
+                                <mat-option value="within 2 weeks">within 2 weeks</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                        <div>
+                            <mat-radio-group ariaLabel="furnishType" formControlName="availability">
+                                <mat-radio-button name="availability" value="Ready to move" #move>Ready to move</mat-radio-button>&nbsp;
+                                <mat-radio-button name="availability" value="Under Construction">Under Construction</mat-radio-button>
+                            </mat-radio-group>
+                        </div>
+                        <div>
+                            <mat-radio-group ariaLabel="furnishedType" formControlName="furnishing">
+                                <mat-radio-button name="furnishing" value="Fully Furnished" *ngIf="move.checked">Fully Furnished</mat-radio-button>&nbsp;
+                                <mat-radio-button name="furnishing" value="Semi Furnished" *ngIf="move.checked">Semi Furnished</mat-radio-button>&nbsp;
+                                <mat-radio-button name="furnishing" value="Unfurnished" *ngIf="move.checked">Unfurnished</mat-radio-button>&nbsp;
+
+
+                            </mat-radio-group>
+                        </div>
+
+                        <mat-slide-toggle #p>Parking</mat-slide-toggle>
+                        <br>
+                        <mat-slide-toggle *ngIf="p.checked" formControlName="noOfOpenParking" value=1>Open Parking</mat-slide-toggle>
+                        <mat-slide-toggle *ngIf="p.checked" formControlName="noOfCoveredParking" value=1>Covered Parking</mat-slide-toggle>
+                        <br>
+                        <label>Area:</label>
+                        <mat-slider class="areaSlider" thumbLabel [displayWith]="formAreaLabel" tickInterval="100" min="1" max="5000" formControlName="propertyArea"></mat-slider>
+                    
+                        <br>
+                        <button mat-raised-button color="primary" (click)="sell()">POST</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button mat-raised-button color="accent"  (click)="nextStep()">Next</button>
+
+                    </form>
+                    <div> If want to add more details go to Third Step</div>
+
+                </mat-tab>
+                <mat-tab label="Third Step" (click)="next=true">
+                    <form [formGroup]="sellForm2" class="my-form">
+                        <br>
+                    
+
+                        <div class="row">
+                            <br>
+          
+                            <div class="col-md-4 offset-1">
+                                <mat-card class="shadow p-3 mb-5 bg-white rounded">
+                                    <mat-slide-toggle formControlName="lifts" #lifts value="lifts.checked">Lifts</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="ac" #ac value="ac.checked">Ac</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="heater" #heater value="heater.checked">Water Heater</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="wifi" #wifi value="wifi.checked">Wifi</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="waterPurifier" #water value="water.checked">Water Purifier</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="maintenenceStaff" #main value="main.checked">Maintenence Staff</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="visitorParking" #visitor value="visitor.checked">Visitor Parking</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="powerBackup" #power value="power.checked">Power Backup</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="fireAlarm" #fire value="fire.checke">Fire Alarm</mat-slide-toggle>
+                                </mat-card>
+
+                            </div>
+                            <div class="col-md-6 offset-1">
+                                <mat-card class="shadow p-3 mb-5 bg-white rounded">
+                                    <mat-slide-toggle formControlName="WaterSupplyFor24Hours" #WaterSupplyFor24Hours value="WaterSupplyFor24Hours">Water Supply For 24 Hours</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToSchool" #CloseToSchool value="CloseToSchool">Close To School</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToHospital" #CloseToHospital value="CloseToHospital">Close To Hospital</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToRailwayStation" #CloseToRailwayStation value="CloseToRailwayStation">Close To Railway Station</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToBusStand" #CloseToBusStand value="CloseToBusStand">Close To Bus Stand</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToAirport" #CloseToAirport value="CloseToAirport">Close To Airport</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToBank" #CloseToBank value="CloseToBank">Close To Bank</mat-slide-toggle>
+                                    <mat-slide-toggle formControlName="CloseToPark" #CloseToPark value="CloseToPark">Close To Park</mat-slide-toggle>
+
+                                </mat-card>
+
+                            </div>
+                        </div>
+
+                        <div class="margin"> If want to add more details go to Fourth Step</div>
+                        <br>
+                        <button mat-raised-button color="primary" (click)="sell()">POST</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <button mat-raised-button color="accent" (click)="nextStep()">Next</button>
+
+                    </form>
+
+                </mat-tab>
+                <mat-tab label="Fourth Step">
+                    <form [formGroup]="sellForm3" class="my-form">
+                        <br>
+                        <mat-card class="shadow p-3 mb-5 bg-white rounded">
+                            <textarea placeholder="Enter property full address" formControlName="Address" class="textarea" rows="3" cols="70"></textarea>
+                            <br>
+
+                        </mat-card>
+
+
+
+                        <mat-card class="shadow p-3 mb-5 bg-white rounded">
+                            <textarea placeholder="Enter description about property " formControlName="description" class="textarea" rows="3" cols="70"></textarea>
+                            <br>
+
+                        </mat-card>
+                        <button mat-raised-button color="primary" (click)="sell()">POST</button>
+
+                    </form>
+
+                </mat-tab>
+
+                
+            </mat-tab-group>
+
+        </div>
+        <div class="col-md-2">
+                <mat-sidenav mode="side" opened position="end" class="text-center end-sidebar">
+                        <br>
+                        <br>
+                        <br>
+                        <h4>Completion Meter</h4>
+                        <p>Shows how much you fill the form</p>
+                        <div class="example-container">
+                            <mat-progress-spinner class="spin-size" [diameter]="40" color="accent"[mode]="mode" [value]="75"#spin1></mat-progress-spinner>{{spin1.value}}%
+                            <span><mat-progress-spinner class="spin-size" [diameter]="40" color="success"[mode]="mode" value="55"#spin2></mat-progress-spinner>{{spin2.value}}%
+                            <mat-progress-spinner class="spin-size" [diameter]="40" color="accent"[mode]="mode" value="90"#spin3></mat-progress-spinner>{{spin3.value}}%</span>
+                        </div>
+                        <br>
+                        <mat-progress-spinner class="spin-size"  [color]="color"[mode]="mode" [value]="value"#spin4></mat-progress-spinner>
+                        <div *ngIf="spin4.value>0">{{spin4.value}}%</div>
+                        <div *ngIf="spin4.value>99" class="text-success text-center">Congratulations!! you have successfully filled the form</div>
+                </mat-sidenav>
+                
+    
+    
+                
+    
+            </div>
+    </div>
+</div>

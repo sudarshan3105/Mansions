@@ -1,0 +1,89 @@
+<mat-toolbar class=" header fixed-top toolbar navbar navbar-expand-md new text-black">
+    <button mat-icon-button #navbarToggler class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" (click)="isShown = !isShown" [attr.aria-expanded]="isShown" aria-label="Toggle navigation">
+        <mat-icon>home</mat-icon>
+    </button>
+    <button mat-button class="navbar-brand" [routerLink]="['/home']">
+        <img class="icons" src="../assets/download (4).jpg">ansions</button>
+    <br>
+    <div class="collapse navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarSupportedContent">
+        <button mat-button class="nav-link" [routerLink]="['/buy']" matTooltip="View Properties" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+            BUY
+        </button>
+        <button mat-button class="nav-link" *ngIf="userLoggedIn;else noenter" [routerLink]="['/sell']" matTooltip="Add Property" matTooltipPosition="below"
+        matTooltipClass="mat-tooltip">
+            SELL
+        </button>
+        <ng-template #noenter>
+            <button mat-button class="nav-link" (click)="viewSnackS()" matTooltip="Add Property" matTooltipPosition="below"
+            matTooltipClass="mat-tooltip">
+                SELL
+            </button>
+        </ng-template>
+        <span class="spacing"></span>
+        <!-- This fills the remaining space of the current row -->
+        <span *ngIf="userName;else check">
+            Welcome {{userName}}
+        </span>
+        <ng-template #check>
+            <span>Welcome Guest</span>
+        </ng-template>
+        <button mat-button matTooltip="wishlist" class="nav-link" *ngIf="userLoggedIn;else star" [routerLink]="['/wishlist']" matTooltip="Wishlisted properties"
+            matTooltipPosition="below" matTooltipClass="mat-tooltip">
+            <mat-icon>grade</mat-icon>
+        </button>
+        <br>
+        <ng-template #star>
+            <button mat-button matTooltip="wishlist" class="nav-link" (click)="viewSnack1()" matTooltip="Wishlisted properties" matTooltipPosition="below"
+                matTooltipClass="mat-tooltip">
+                <mat-icon>grade</mat-icon>
+            </button>
+        </ng-template>
+        <button mat-button matTooltip="profile" class="nav-link" *ngIf="userLoggedIn;else go" [routerLink]="['/profile']" matTooltip="User Profile"
+            matTooltipPosition="below" matTooltipClass="mat-tooltip">
+            <mat-icon>person</mat-icon>
+        </button>
+        <br>
+        <ng-template #go>
+            <button mat-button matTooltip="profile" class="nav-link" (click)="viewSnack()" matTooltip="User Profile" matTooltipPosition="below"
+                matTooltipClass="mat-tooltip">
+                <mat-icon>person</mat-icon>
+            </button>
+        </ng-template>
+        <button mat-button [routerLink]="['/login']" class="nav-link" (click)="login()" *ngIf="!userName" matTooltip="Login"
+            matTooltipPosition="below" matTooltipClass="mat-tooltip">SIGN IN</button>
+        <button mat-button *ngIf="userName" class="nav-link" (click)="signout()">SIGN OUT</button>
+        <br>
+    </div>
+</mat-toolbar>
+<div class="flex-wrapper">
+    <br>
+    <br>
+    <router-outlet class="page-content top-margin"></router-outlet>
+    <mat-toolbar class=" fixed-bottom toolbar navbar navbar-expand-md bg-dark text-white">
+        <button #navbarToggler class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupported" aria-controls="navbarSupportedContent"
+            (click)="isShown = !isShown" [attr.aria-expanded]="isShown" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </mat-toolbar>
+</div>
+<div class="flex-wrapper">
+    <br>
+    <br>
+    <router-outlet class="page-content top-margin"></router-outlet>
+    <mat-toolbar class=" fixed-bottom toolbar navbar navbar-expand-md text-black new">
+        <br>
+        <button mat-button [routerLink]="['/home']">www.mansions.com</button>
+
+        <div class="col-md-4 offset-3">
+            <!-- <span>&copy; Mansions 2019</span> -->
+        </div>
+        <span class="spacing"></span>
+        <div>
+            <!-- <span>Powered by Infosys</span> -->
+        </div>
+        <br>
+    </mat-toolbar>
+</div>
+
