@@ -1,0 +1,39 @@
+.my-form{
+    min-width: 200px;
+    max-width: 500px;
+    width: 100%;
+  }
+   
+  .full-width {
+    width: 100%;
+  }
+
+.green-snackbar {
+    background:green;
+}
+.fontcolor{
+  color:black;
+  
+}
+::ng-deep .mat-tooltip{
+  background-color:black;
+  color:white;
+  height: 50%;
+  font-size: 13px;
+}
+
+
+
+#parent #popup {
+  text-decoration: none;
+  display: none;
+}
+#parent:hover #popup {
+  text-decoration: none;
+  display: block;
+}
+
+#tooltip{
+  height: 20px;
+  background-color: blueviolet
+}

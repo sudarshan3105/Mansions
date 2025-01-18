@@ -1,0 +1,112 @@
+<br>
+
+
+<div class="container-fluid">
+    <h1 align="center">Welcome Admin</h1>
+
+    <mat-tab-group>
+        <mat-tab label="Registered Users">
+            <br>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="color">
+                        <th>UserId</th>
+                        <th>UserName</th>
+                        <th>Contact No</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    <tr *ngFor="let val of value">
+                        <td #idval>{{val.userId}}</td>
+                        <td>{{val.name}}</td>
+                        <td>{{val.contactNo}}</td>
+                        <td>
+                            <button mat-raised-button color="accent" (click)="delete(idval.innerText)" matTooltip="Click here to delete user" matTooltipPosition="right"
+                                matTooltipClass="mat-tooltip">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+
+        </mat-tab>
+        <mat-tab label="Buyers">
+            <br>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="color">
+                        <th>UserId</th>
+                        <th>UserName</th>
+                        <th>Contact No</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data1 of buyers">
+                        <td>{{data1.userId}}</td>
+                        <td>{{data1.name}}</td>
+                        <td>{{data1.contactNo}}</td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </mat-tab>
+        <mat-tab label="Sellers">
+            <br>
+
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="color">
+                        <th>UserId</th>
+                        <th>UserName</th>
+                        <th>Contact No</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let a of sellers">
+                        <td>{{a.userId}}</td>
+                        <td>{{a.name}}</td>
+                        <td>{{a.contactNo}}</td>
+
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </mat-tab>
+        <mat-tab class="container-fluid" label="Properties">
+            <table class="table table-bordered">
+                <thead>
+                    <tr class="color">
+                        <th>Property Id</th>
+                        <th>Seller Id</th>
+                        <th>Buyer Id</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let val of properties">
+                        <td #pid>{{val.propertyId}}</td>
+                        <td>{{val.sellerId}}</td>
+                        <td>{{val.buyerId}}</td>
+                        <td>
+                            <button mat-raised-button color="accent" (click)="deletep(pid.innerText)" matTooltip="Click here to delete"
+                                matTooltipPosition="right" matTooltipClass="mat-tooltip">Delete</button>
+                        </td>
+
+                    </tr>
+                </tbody>
+            </table>
+
+        </mat-tab>
+    </mat-tab-group>
+    <br>
+    <br>
+</div>

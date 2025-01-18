@@ -1,0 +1,57 @@
+<mat-grid-list cols="4" rowHeight="240px">
+
+    <mat-grid-tile [colspan]=3 [rowspan]=2>
+
+        <mat-card class="my-card offset-4">
+            <h1 align="center" class="fontcolor">Register</h1>
+            <mat-card-content>
+                <form class="my-form" [formGroup]="registerForm">
+                    <mat-form-field class="full-width">
+                        <mat-label>Name</mat-label>
+                        <input type="text" tabindex="1" matInput placeholder="Name" name="name" required formControlName="name">
+                        <mat-error *ngIf="registerForm.controls.name.errors?.required && registerForm.controls.name?.dirty" class="text-danger">Required Field</mat-error>
+                        <mat-error *ngIf=registerForm.controls.name.errors?.pattern class="text-danger">User name should contain only alphabets</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Email Id</mat-label>
+                        <input type="text" matInput placeholder="Email" name="emailId" required formControlName="emailId" tabindex="2">
+
+                        <mat-error *ngIf=registerForm.controls.emailId.errors?.pattern class="text-danger" id="emailIdError">Enter valid EmailId</mat-error>
+                        <mat-error *ngIf="registerForm.controls.emailId.errors?.required && registerForm.controls.emailId.dirty" class="text-danger">Field Required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Contact No</mat-label>
+                        <input type="text" matInput placeholder="Contact" tabindex="3" name="contactNo" min="0" oninput="validity.valid||(value='');" required
+                            formControlName="contactNo">
+
+                        <mat-error *ngIf=registerForm.controls.contactNo.errors?.pattern class="text-danger" id="ContactNoError">Please enter a 10 digit mobile number</mat-error>
+                        <mat-error *ngIf="registerForm.controls.contactNo.errors?.required && registerForm.controls.contactNo.dirty" class="text-danger">Field Required</mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput placeholder="Password" formControlName="password" required name="password" [type]="hide ? 'password' : 'text'"
+                            tabindex="4">
+                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" tabindex="5">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="registerForm.controls.password.errors?.pattern " class="text-danger" id="PasswordError">Password should contain min 8 characters and should include special characters,numbers and one uppercase</mat-error>
+                        <mat-error *ngIf="registerForm.controls.password.errors?.required && registerForm.controls.password.dirty" class="text-danger">Field Required</mat-error>
+                    </mat-form-field>
+
+                </form>
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-raised-button [disabled]="registerForm.invalid" class="btn-block" (click)="register()"  (keyup.enter)="register()"color="accent" matTooltip="Click here to register"
+                    matTooltipPosition="below">REGISTER</button>
+                <br />
+
+
+            </mat-card-actions>
+            <div *ngIf="errorMessage!=null" class="text-danger">
+                {{errorMessage}}
+            </div>
+        </mat-card>
+
+
+    </mat-grid-tile>
+</mat-grid-list>

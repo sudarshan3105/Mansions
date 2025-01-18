@@ -1,0 +1,97 @@
+<mat-tab-group>
+    <mat-tab label="Personal Details">
+        <mat-card>
+
+            <mat-card-content>
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-4 offset-4 pad">
+                            <mat-card-title>
+                                <mat-icon color="primary" class="size">face</mat-icon>
+                            </mat-card-title>
+                            <table class="table table-bordered ">
+                                <thead>
+                                    <tr>
+                                        <td>UserName:</td>
+                                        <td>"{{name}}"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>EmailId:</td>
+                                        <td>"{{emailId}}"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ContactNo:</td>
+                                        <td>"{{contactNo}}"</td>
+                                    </tr>
+                                </thead>
+                            </table>
+                            <div class="row">
+                                <div class="col-md-6 offset-3">
+
+                                    <button class="btn btn-primary btn-block" matTooltip="Click here to Update Profile" matTooltipPosition="below" matTooltipClass="mat-tooltip"
+                                        [routerLink]="['/update']">Edit Profile</button>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </mat-tab>
+
+
+    <mat-tab label="Posted Properties">
+
+        <div class="container-fluid">
+            <div class="row ">
+                <div class="col-md-4" *ngFor="let p of userArr">
+                    <mat-card class="example-card card-shadow">
+
+                        <mat-card-header>
+                            <div mat-card-avatar class="example-header-image"></div>
+                            <mat-card-title>{{p.price | currency :'INR':'symbol'}}
+                                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon color="warn">{{hide ? 'favorite' : 'favorite_border'}}</mat-icon>
+                                </button>
+                            </mat-card-title>
+                            <mat-card-subtitle>For {{p.propertyType}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <div class="inner">
+                            <img mat-card-image src="{{p.imageUrls}}" alt="Photo of a House" height="250px" width="250px">
+                            <br>
+                        </div>
+                        <mat-card-content>
+                            <mat-grid-list cols="2" rowHeight="40">
+
+                                <mat-grid-tile class="align-left">{{p.propertyArea}}sq.ft</mat-grid-tile>&nbsp;
+                                <mat-grid-tile class="align-right">{{p.noOfBedrooms}}Bhk{{p.buildingType}}</mat-grid-tile>
+                                <br>
+                                <mat-grid-tile class="align-left">{{p.furnishing}}</mat-grid-tile>
+                                <mat-grid-tile class="align-right">{{p.availability}}</mat-grid-tile>
+                            </mat-grid-list>
+                        </mat-card-content>
+                        <mat-card-actions>
+                            <div class="center">
+                                <button mat-stroked-button color="primary">Contact Owner</button>
+                                <br>
+
+                            </div>
+                            <br>
+                            <div class="center">
+                                <button mat-flat-button color="primary">View Details</button>
+                                <br>
+                            </div>
+                        </mat-card-actions>
+                    </mat-card>
+                    <br>
+                </div>
+            </div>
+        </div>
+
+
+    </mat-tab>
+
+</mat-tab-group>

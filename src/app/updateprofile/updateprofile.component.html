@@ -1,0 +1,37 @@
+<br>
+<div class="container-fluid">
+    <div class="row">
+        <h4 class="text-center">Update your Profile here</h4>
+        <mat-grid-list cols="4" rowHeight="210px">
+            <mat-grid-tile [colspan]=3 [rowspan]=2>
+                <mat-card class="my-card offset-4">
+                    <h2 align="center" class="fontcolor">Update Profile</h2>
+                    <mat-card-content>
+                        <form class="my-form" [formGroup]="updateForm">
+                            <mat-form-field class="full-width">
+                                <mat-label>New Name</mat-label>
+                                <input type="text" matInput placeholder="Name" name="name" required formControlName="name">
+
+                                <mat-error *ngIf=updateForm.controls.name.errors?.pattern class="text-danger" id="nameError">User name should contain only alphabets</mat-error>
+                            </mat-form-field>
+
+                            <mat-form-field class="full-width">
+                                <mat-label>New Contact No</mat-label>
+                                <input type="number" matInput placeholder="Contact" name="contactNo" min="0" min="0" oninput="validity.valid||(value='')"
+                                    required formControlName="contactNo">
+
+                                <mat-error *ngIf=updateForm.controls.contactNo.errors?.pattern class="text-danger" id="ContactNoError">Please enter a 10 digit contact number</mat-error>
+                            </mat-form-field>
+
+                        </form>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-raised-button (click)="update_profile()" color="primary" matTooltip="Click here to Update Profile" matTooltipPosition="below"
+                            matTooltipClass="mat-tooltip">UPDATE</button>
+                        <br />
+                    </mat-card-actions>
+                </mat-card>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>

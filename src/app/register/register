@@ -1,0 +1,54 @@
+
+    <mat-grid-list cols="4" rowHeight="310px">
+
+    <mat-grid-tile [colspan]=3 [rowspan]=2>
+
+
+
+        <mat-card class="my-card offset-4">
+                <h1 align="center" class="fontcolor">Register</h1>
+                <mat-card-content>
+                    <form class="my-form" [formGroup]="registerForm">                       
+                        <mat-form-field class="full-width">
+                            <mat-label>Name</mat-label>
+                            <input type="text" matInput placeholder="Name" name="name" required formControlName="name" tabindex="1">
+
+                            <mat-error *ngIf=registerForm.controls.name.errors class="text-danger" id="nameError">User name should contain only alphabets</mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="full-width">
+                                <mat-label>Email Id</mat-label>
+                                <input type="text" matInput placeholder="Email" name="emailId" required formControlName="emailId" tabindex="2">
+        
+                                <mat-error *ngIf=registerForm.controls.emailId.errors class="text-danger" id="emailIdError">Enter valid ContactNo/EmailId</mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="full-width">
+                                    <mat-label>Contact No</mat-label>
+                                    <input type="number" matInput placeholder="Contact" name="contactNo" min="0" required formControlName="contactNo" tabindex="3">
+        
+                                    <mat-error *ngIf=registerForm.controls.contactNo.errors class="text-danger" id="ContactNoError"></mat-error>
+                                </mat-form-field>  
+                                <mat-form-field class="full-width">
+                                        <mat-label>Password</mat-label>
+                                        <input matInput placeholder="Password" formControlName="password"  required name="password" [type]="hide ? 'password' : 'text'" tabindex="4">
+                                        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" tabindex="5">
+                                          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                                        </button>
+                                        <mat-error *ngIf="registerForm.controls.password.errors?.pattern " class="text-danger" id="PasswordError">Enter valid Password</mat-error>
+                                      </mat-form-field>  
+                    
+                    </form>
+                </mat-card-content>
+                <mat-card-actions>
+                        <button mat-raised-button [disabled]="registerForm.invalid" (click)="register()" color="primary" tabindex="6" (keyup.enter)="register()">REGISTER</button>
+                        <br />
+                       
+        
+                    </mat-card-actions>
+                    <div *ngIf="errorMessage!=null" class="text-danger">
+                        {{errorMessage}}
+                    </div>
+            </mat-card>
+
+
+    </mat-grid-tile>
+    </mat-grid-list>

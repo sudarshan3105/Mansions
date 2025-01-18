@@ -1,0 +1,355 @@
+<div *ngIf="view else v1">
+    <div *ngIf="wishlistArr?.length>0;else error">
+        <div class="container-fluid">
+            <div class="row">
+
+                <div class="col-md-3" *ngFor="let p of wishlistArr">
+
+                    <mat-card class="example-card card-shadow">
+                        <mat-card-header>
+                            <div mat-card-avtar class="example-header-image"></div>
+                            <mat-card-title>
+
+                                {{p.price | currency :'INR':'symbol'}}
+
+                                <!-- <mat-card-title>
+                                
+                                    {{p.price | currency :'INR':'symbol'}}<br>
+                                    For {{p.propertyType}} -->
+                                <button mat-icon-button matSuffix [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                    <mat-icon color="warn">favorite</mat-icon>
+                                </button>
+                            </mat-card-title>
+                            <mat-card-subtitle>For {{p.propertyType}}</mat-card-subtitle>
+                        </mat-card-header>
+                        <div class="inner">
+                            <img mat-card-image src="{{p.imageUrls}}" alt="Photo of a House" height="250px" width="250px">
+                        </div>
+
+                        <mat-card-content>
+                            <!-- <img mat-card-image src="{{p.imageUrls}}" alt="Photo of a House"> -->
+                            <mat-grid-list cols="2" rowHeight="40">
+
+                                <mat-grid-tile class="align-left">{{p.propertyArea}}sq.ft</mat-grid-tile>&nbsp;
+                                <mat-grid-tile class="align-right">{{p.noOfBedrooms}}Bhk{{p.buildingType}}</mat-grid-tile>
+                                <br>
+                                <mat-grid-tile class="align-left">{{p.furnishing}}</mat-grid-tile>
+                                <mat-grid-tile class="align-right">{{p.availability}}</mat-grid-tile>
+                            </mat-grid-list>
+
+                            <mat-card-actions>
+                                <ng-template #owner>
+                                    <span>Name: {{owner_name}}</span>
+                                    <br>
+                                    <span>Contact Number: {{owner_contact}}</span>
+                                    <br>
+                                    <span>Email-Id: {{owner_emailId}}</span>
+                                </ng-template>
+                                <div class="center">
+                                    <button mat-stroked-button color="primary" layout-align="center" (click)="openDialog(owner,p)">Contact Owner</button>
+                                    <br>
+                                    <br>
+                                </div>
+
+                                <div class="center">
+                                    <button mat-flat-button class="btn btn-primary" layout-align="center" (click)="redirectfunc(p.propertyId)">View Details</button>
+                                    <br>
+                                </div>
+
+                            </mat-card-actions>
+                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <br>
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<ng-template #error>
+    <br>
+    <br>
+    <br>
+    <mat-card>
+        <h1 class="text-center">{{errorMessage}}</h1>
+    </mat-card>
+    <br>
+</ng-template>
+<ng-template #v1>
+    <mat-card>
+        <mat-card-header>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-grid-list cols=3 gutterSize="20px">
+                <mat-grid-tile colspan=1>
+                    <img mat-card-image src="{{wishlistArr.imageUrls}}" class="example-header-images" alt="House image">
+                </mat-grid-tile>
+                <mat-grid-tile colspan=2>
+                    <div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <mat-card-header>
+                                    <mat-card-title style="text-align: center">Description</mat-card-title>
+                                </mat-card-header>
+                                <br> {{wishlistArr.description}}
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                            </div>
+                            <div class="col-md-4">
+                                Price:{{wishlistArr.price | currency :'INR':'symbol'}}
+                            </div>
+                            <div class="col-md-4">
+                                Security Deposit:{{wishlistArr.Advance | currency :'INR':'symbol'}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Transaction Type:{{wishlistArr.transactionType}}
+                            </div>
+                            <div class="col-md-4">
+                                Age:{{wishlistArr.ageOfProperty}}
+                            </div>
+                            <div class="col-md-4">
+                                Availability:{{wishlistArr.availabilityBy}}
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                Bedrooms:
+                                <span *ngFor='let in of counter(wishlistArr.noOfBedrooms)'>
+                                    <mat-icon>king_bed</mat-icon>
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                Bathrooms:
+                                <span *ngFor='let in of counter(wishlistArr.noOfBathrooms)'>
+                                    <mat-icon>bathtub</mat-icon>
+                                </span>
+                            </div>
+                            <div class="col-md-4">
+                                Balconies:
+                                <span *ngFor='let in of counter(wishlistArr.noOfBalconies)'>
+                                    <mat-icon>king_bed</mat-icon>
+                                </span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <ng-template #owner>
+                                <span>Name: {{owner_name}}</span>
+                                <br>
+                                <span>Contact Number: {{owner_contact}}</span>
+                                <br>
+                                <span>Email-Id: {{owner_emailId}}</span>
+                            </ng-template>
+                            <div class="col-md-8 offset-2">
+                                <button mat-raised-button style="align-content: center" (click)="openDialog(owner,wishlistArr)" class="btn-primary btn-block">Contact owner</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </mat-card-content>
+    </mat-card>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-md-3 offset-1">
+            <mat-card class="example-card" id="features">
+                <mat-card-header>
+                    <mat-card-title>Features</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        <mat-list id="features">
+                            <mat-list-item>
+                                <div class="d-inline bg-primary text-white text-center box-1">Property Type : {{wishlistArr.propertyType}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <div class="d-inline bg-primary text-white text-center box-1">Ownership : {{wishlistArr.propertyOwnership}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <div class="d-inline bg-primary text-white text-center box-1">Building Type : {{wishlistArr.buildingType}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <div class="d-inline bg-primary text-white text-center box-1">Furnishing : {{wishlistArr.furnishing}}</div>
+                            </mat-list-item>
+                            <mat-list-item>
+                                <div class="d-inline bg-primary text-white text-center box-1">Availability : {{wishlistArr.availability}}</div>
+                            </mat-list-item>
+                        </mat-list>
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3 offset-1">
+            <mat-card class="example-card" id="highlights">
+                <mat-card-header>
+                    <mat-card-title>Highlights</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        <mat-list id="highlights">
+                            <div class="row">
+                                <div class="col-md-4" *ngIf="wishlistArr.WaterSupplyFor24Hours">
+                                    <div class="icon text-center">
+                                        <mat-icon>waves</mat-icon>
+                                        <br>
+                                        <span class="caption">24 Hours Water Supply</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToSchool">
+                                    <div class="icon text-center">
+                                        <mat-icon>local_library</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to School</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToHospital">
+                                    <div class="icon text-center">
+                                        <mat-icon>local_hospital</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to Hospital</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToRailwayStation">
+                                    <div class="icon text-center">
+                                        <mat-icon>directions_railway</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to Railway Station</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToBusStand">
+                                    <div class="icon text-center">
+                                        <mat-icon>directions_bus</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to Bus Stand</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToAirport">
+                                    <div class="icon text-center">
+                                        <mat-icon>local_airport</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to Airport</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToBank">
+                                    <div class="icon text-center">
+                                        <mat-icon>account_balance</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to Bank</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.CloseToPark">
+                                    <div class="icon text-center">
+                                        <mat-icon>nature_people</mat-icon>
+                                        <br>
+                                        <span class="caption">Close to Park</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </mat-list>
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-md-3 offset-1">
+            <mat-card class="example-card" id="amenities">
+                <mat-card-header>
+                    <mat-card-title>Amenities</mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>
+                        <mat-list id="highlights">
+                            <div class="row">
+                                <div class="col-md-4" *ngIf="wishlistArr.lifts">
+                                    <div class="icon text-center">
+                                        <mat-icon>view_array</mat-icon>
+                                        <br>
+                                        <span class="caption">LIFTS</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.ac">
+                                    <div class="icon text-center">
+                                        <mat-icon></mat-icon>
+                                        <br>
+                                        <span class="caption">AC</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.heater">
+                                    <div class="icon text-center">
+                                        <mat-icon></mat-icon>
+                                        <br>
+                                        <span class="caption">HEATER</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.maintenenceStaff">
+                                    <div class="icon text-center">
+                                        <mat-icon>person</mat-icon>
+                                        <br>
+                                        <span class="caption">MAINTENANCE</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.visitorParking">
+                                    <div class="icon text-center">
+                                        <mat-icon>local_parking</mat-icon>
+                                        <br>
+                                        <span class="caption">PARKING</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.IntercomFacility">
+                                    <div class="icon text-center">
+                                        <mat-icon>settings_remo</mat-icon>
+                                        <br>
+                                        <span class="caption">INTERCOM</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.wifi">
+                                    <div class="icon text-center">
+                                        <mat-icon>wifi</mat-icon>
+                                        <br>
+                                        <span class="caption">WIFI</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.fireAlarm">
+                                    <div class="icon text-center">
+                                        <mat-icon></mat-icon>
+                                        <br>
+                                        <span class="caption">FIRE ALARM</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.WaterPurifier">
+                                    <div class="icon text-center">
+                                        <mat-icon></mat-icon>
+                                        <br>
+                                        <span class="caption">WATER PURIFIER</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-4" *ngIf="wishlistArr.PowerBackup">
+                                    <div class="icon text-center">
+                                        <mat-icon></mat-icon>
+                                        <br>
+                                        <span class="caption">POWER BACKUP</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </mat-list>
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+</ng-template>

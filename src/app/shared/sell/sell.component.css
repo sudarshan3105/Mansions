@@ -1,0 +1,30 @@
+.priceSlider{
+    width:300px
+}
+
+mat-form-field{
+    width:200px
+}
+.ageSlider{
+    width: 200px
+}
+.areaSlider{
+    width:200px
+}
+
+.textArea{
+    width:300px
+}
+.cad1{
+    box-shadow: 10px;
+}
+
+.margin{
+    margin-left: 52px
+}
+::ng-deep .mat-tooltip{
+    background-color:black;
+    color:white;
+    height: 50%;
+    font-size: 13px;
+}

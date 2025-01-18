@@ -1,0 +1,72 @@
+<div class="container-fluid">
+<div id="bg-style">
+    <br>
+    <br>
+    <br>
+    <h1 class="text-center" style="color:black; ">Makaan Se.Ghar Tak.</h1>
+    <br>
+    <br>
+
+    <div class="card_c">
+
+
+
+        <div class="row container-fluid">
+            <div class="col-md-4 offset-4">
+                <div class="example-container">
+                    <mat-form-field>
+                        <mat-select placeholder="Search in" (click)="search()">
+                            <mat-option [value]="e.area" *ngFor="let e of loc" (click)="show_property(e.area)">{{e.area}}</mat-option>
+                        </mat-select>
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+
+   X
+
+            <div class="new">
+                <mat-card class="col-md-2 offset-1 new1 text-center" [routerLink]="['/buy']">
+                   BUY
+                    
+                </mat-card>
+                <mat-card class="col-md-2 offset-2 new1 text-center" [routerLink]="['/buy']">
+                   RENT
+                </mat-card>
+                <mat-card class="col-md-2 offset-2 new1 text-center" [routerLink]="['/buy']">
+                    SELL
+                </mat-card>
+    
+                </div>
+            </div>
+
+        </div>
+
+        <marquee class="mq" behavior="scroll" direction="left" height="50%" width="100%" onmouseover="this.stop();" onmouseout="this.start();"
+            [routerLink]="['/buy']">
+
+
+
+            <img src="../../assets/d3.jpg" width="200" height="160" alt="Natural" />
+            <img src="../../assets/d5.jpg" width="200" height="160" alt="Natural" />
+            <img src="../../assets/d6.jpg" width="200" height="160" alt="Natural" />
+            <img src="../../assets/d7.jpg" width="200" height="160" alt="Natural" />
+
+            <img src="../../assets/d8.jpg" width="200" height="160" alt="Natural" />
+
+            <img src="../../assets/d1.jpg" width="200" height="160" alt="Natural" />
+
+            <img src="../../assets/d3.jpg" width="200" height="160" alt="Natural" />
+            <img src="../../assets/d5.jpg" width="200" height="160" alt="Natural" />
+            <img src="../../assets/d6.jpg" width="200" height="160" alt="Natural" />
+            <img src="../../assets/d7.jpg" width="200" height="160" alt="Natural" />
+
+            <img src="../../assets/d8.jpg" width="200" height="160" alt="Natural" />
+
+        </marquee>
+    </div>
+
+
+
+</div>
+
+</div>
